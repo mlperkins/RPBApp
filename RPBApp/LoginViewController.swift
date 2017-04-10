@@ -7,7 +7,7 @@
 //
 import UIKit
 import FBSDKLoginKit
-
+import CoreData
 class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDelegate {
     
     //Image Logo
@@ -98,11 +98,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     func getFBInfo(){
         
         
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let profileToStore = Profile(context: context)
         if (FBSDKAccessToken.current()) != nil{
             
             FBSDKGraphRequest (graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email"]).start(completionHandler: { (connection, result, Error) in
                 if(Error == nil) {
                     print ("result \(String(describing: result))")
+                    
                 }
                 else{
                     print("Error \(String(describing: Error))")

@@ -10,11 +10,10 @@ import UIKit
 
 class MainPageViewController: UIViewController {
 
-    var breakfastProgress: CustomProgressView
-    
+    var breakfastProgress: CustomProgressView!
+    var lunchProgress: CustomProgressView!
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        breakfastProgress = CustomProgressView()
 
         super.init(nibName: nil, bundle: nil)
         
@@ -25,8 +24,21 @@ class MainPageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(breakfastProgress)
-        view.setNeedsUpdateConstraints()
+        
+        
+        breakfastProgress = CustomProgressView(frame: CGRect.zero, labelText: "BREAKFAST", progressSize: 0.25)
+        lunchProgress = CustomProgressView(frame: CGRect.zero, labelText: "LUNCH", progressSize: 0.75)
+        
+        
+        self.view.addSubview(lunchProgress)
+        self.view.addSubview(breakfastProgress)
+        
+        //set position of the progress bars
+        breakfastProgress.setViewConstraints(view: view, centerY: 0.3)
+        
+        lunchProgress.setViewConstraints(view: view, centerY: 0.5)
+        
+       // view.setNeedsUpdateConstraints()
 
     }
     override func updateViewConstraints() {
@@ -35,47 +47,9 @@ class MainPageViewController: UIViewController {
     }
     func setViewConstraints(){
         
-        NSLayoutConstraint(
-            item: breakfastProgress,
-            attribute: .width,
-            relatedBy: .equal,
-            toItem: view,
-            attribute: .width,
-            multiplier: 0.75,
-            constant: 0.0)
-            .isActive = true
-        //height constraint
-        NSLayoutConstraint(
-            item: breakfastProgress,
-            attribute: .height,
-            relatedBy: .equal,
-            toItem: view,
-            attribute: .height,
-            multiplier: 0.05,
-            constant: 0.0)
-            .isActive = true
-        NSLayoutConstraint(
-            item: breakfastProgress,
-            attribute: .centerX,
-            relatedBy: .equal,
-            toItem: view,
-            attribute: .centerX,
-            multiplier: 1.0,
-            constant: 0.0)
-            .isActive = true
         
-        NSLayoutConstraint(
-            item: breakfastProgress,
-            attribute: .centerY,
-            relatedBy: .equal,
-            toItem: view,
-            attribute: .centerY,
-            multiplier: 1.0,
-            constant: 0.0)
-            .isActive = true
-        
-        print("set constraints")
     }
+    
         
     
     

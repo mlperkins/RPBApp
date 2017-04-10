@@ -6,7 +6,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RPBApp/RewardsModel.swift"
@@ -19,14 +19,14 @@
             landmarkType = "14">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "RPBApp.Rewards.init (breakfastRewards : Swift.Int, lunchRewards : Swift.Int, smoothiesRewards : Swift.Int, coffeeRewards : Swift.Int) -&gt; RPBApp.Rewards"
                   moduleName = "RPBApp"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///home/mperkins/Desktop/RPBApp/RPBApp/RewardsModel.swift"
-                  timestampString = "513550470.832434"
+                  urlString = "file:///home/mperkins/Documents/RPBApp/RPBApp/RewardsModel.swift"
+                  timestampString = "513557017.134525"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
@@ -34,14 +34,14 @@
                   offsetFromSymbolStart = "7">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "RPBApp.Rewards.init () -&gt; RPBApp.Rewards"
                   moduleName = "RPBApp"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///home/mperkins/Desktop/RPBApp/RPBApp/RewardsModel.swift"
-                  timestampString = "513550470.834577"
+                  urlString = "file:///home/mperkins/Documents/RPBApp/RPBApp/RewardsModel.swift"
+                  timestampString = "513557017.136664"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "12"
