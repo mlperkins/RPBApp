@@ -6,7 +6,7 @@
 //  Copyright © 2017 Michael Perkins. All rights reserved.
 //
 
-import UIKit
+/*import UIKit
 
 class ProfileView: UIView{
     
@@ -39,4 +39,4 @@ class ProfileView: UIView{
     }
     */
 
-}
+}*/

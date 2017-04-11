@@ -100,11 +100,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let profileToStore = Profile(context: context)
+        
+        
         if (FBSDKAccessToken.current()) != nil{
             
             FBSDKGraphRequest (graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email"]).start(completionHandler: { (connection, result, Error) in
                 if(Error == nil) {
                     print ("result \(String(describing: result))")
+                    let fbData: [String:AnyObject] = result as! [String:AnyObject]
+                    profileToStore.email = fbData["email"] as? String
+                    profileToStore.f_name = fbData["first_name"] as? String
+                    profileToStore.l_name = fbData["last_name"] as? String
+                    //profileToStore.pic = fbData["picture.type(large)"] as? String
+                    (UIApplication.shared.delegate as! AppDelegate).saveContext()
                     
                 }
                 else{

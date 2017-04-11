@@ -3,10 +3,13 @@
     <entity name="Entity" representedClassName="Entity" syncable="YES" codeGenerationType="class"/>
     <entity name="Profile" representedClassName="Profile" syncable="YES" codeGenerationType="class">
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="f_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="l_name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pic" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Profile" positionX="-63" positionY="-18" width="128" height="75"/>
         <element name="Entity" positionX="-54" positionY="9" width="128" height="45"/>
+        <element name="Profile" positionX="-63" positionY="-18" width="128" height="120"/>
     </elements>
 </model>

@@ -25,8 +25,13 @@ class MainPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        /*getProfileData()
+        let pro = profile[0]
+        let fname: String? = pro.f_name*/
+            
+            
         breakfastProgress = CustomProgressView(frame: CGRect.zero, labelText: "BREAKFAST", progressSize: 0.25)
+        
         lunchProgress = CustomProgressView(frame: CGRect.zero, labelText: "LUNCH", progressSize: 0.75)
         
         
@@ -50,6 +55,16 @@ class MainPageViewController: UIViewController {
         
     }
     
+    //TESTING TO GET DATA
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var profile : [Profile] = []
+    private func getProfileData() {
+        do {
+            profile = try context.fetch(Profile.fetchRequest())
+        } catch {
+            print("Fetching Failed")
+        }
+    }
         
     
     

@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     lazy var persistentContainer: NSPersistentContainer = {
         
-        let container = NSPersistentContainer(name: "AppModel.xcdatamodeled")
+        let container = NSPersistentContainer(name: "AppModel")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error {
                 
@@ -36,7 +36,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Set Background Color of window
         window?.backgroundColor = UIColor.white
-        
+        FBSDKAccessToken.setCurrent(nil)
+
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         if (FBSDKAccessToken.current() != nil) {
             // Allocate memory for an instance of the 'MainViewController' class
