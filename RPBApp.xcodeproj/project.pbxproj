@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		160199A81E9EEB99006A7E96 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160199A71E9EEB99006A7E96 /* RegisterViewController.swift */; };
 		16129BD01E941D0B00E89AD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16129BCF1E941D0B00E89AD1 /* AppDelegate.swift */; };
 		16129BD71E941D0B00E89AD1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16129BD61E941D0B00E89AD1 /* Assets.xcassets */; };
 		16129BDA1E941D0B00E89AD1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16129BD81E941D0B00E89AD1 /* LaunchScreen.storyboard */; };
@@ -79,6 +80,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		160199A71E9EEB99006A7E96 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		16129BCC1E941D0B00E89AD1 /* RPBApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RPBApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16129BCF1E941D0B00E89AD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		16129BD61E941D0B00E89AD1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 				162FBA871E958612003B541C /* TabController.swift */,
 				1642337B1E95B4CF00316922 /* LoginViewController.swift */,
 				16C02F9C1E96CC21001825C5 /* HelpPageViewController.swift */,
+				160199A71E9EEB99006A7E96 /* RegisterViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -508,6 +511,7 @@
 				16B5550B1E9C469F00207310 /* AppModel.xcdatamodeld in Sources */,
 				1642337C1E95B4CF00316922 /* LoginViewController.swift in Sources */,
 				16C02F9F1E96DB24001825C5 /* MainPageViewController.swift in Sources */,
+				160199A81E9EEB99006A7E96 /* RegisterViewController.swift in Sources */,
 				16A6495C1E9BFD50003E67D5 /* CustomProgressView.swift in Sources */,
 				162FBA881E958612003B541C /* TabController.swift in Sources */,
 			);

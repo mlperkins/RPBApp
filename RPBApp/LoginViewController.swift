@@ -34,14 +34,28 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         return view
         
     }()
+    //FB login button
     let FBLoginButton : FBSDKLoginButton = {
         let button = FBSDKLoginButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
         
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.showsTouchWhenHighlighted = true
+        button.tintColor = UIColor.gray
         return button
         
         
     }()
+    //Register now 
+    let registerNow : UIButton = {
+        let button = UIButton(type: UIButtonType.infoDark)
+        button.setTitleColor(UIColor.black, for: UIControlState.normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Not a registered? Register now!", for: UIControlState.normal)
+        
+        return button
+        
+    }()
+    //register now action target
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nil, bundle: nil)
@@ -60,6 +74,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         username.delegate = self
         password.delegate = self
         
+        registerNow.addTarget(self, action: #selector(LoginViewController.goToRegisterPage(_:)), for: UIControlEvents.touchUpInside)
         //background
         view.backgroundColor = UIColor.init(red: 0/255, green: 191/255, blue: 1.0, alpha: 0.3)
         
@@ -67,6 +82,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         view.addSubview(username)
         view.addSubview(password)
         view.addSubview(logoView)
+        view.addSubview(registerNow)
         self.setTextFieldStyles()
         view.setNeedsUpdateConstraints()
         
@@ -74,7 +90,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         
     }
     
-    
+    //register function
+     func goToRegisterPage(_ sender: Any?) {
+        
+        print("Button pressed")
+        
+        
+        
+    }
     
     //FACEBOOK LOGIN FUNCS
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
@@ -160,7 +183,26 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     }
     func setViewConstraints() {
         
+        //Register button constraints
+        NSLayoutConstraint(
+            item: registerNow,
+            attribute: .centerX,
+            relatedBy: .equal,
+            toItem: view,
+            attribute: .centerX,
+            multiplier: 1.0,
+            constant: 0.0)
+            .isActive = true
         
+        NSLayoutConstraint(
+            item: registerNow,
+            attribute: .top,
+            relatedBy: .equal,
+            toItem: password,
+            attribute: .bottom,
+            multiplier: 1.0,
+            constant: 5.0)
+            .isActive = true
         
         //Facebook button centered
         NSLayoutConstraint(
