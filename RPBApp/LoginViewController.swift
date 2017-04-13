@@ -19,7 +19,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         
     }()
     //username textField
-    var username: UITextField! = {
+    var username: UITextField = {
         let view = UITextField()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.borderStyle = .roundedRect
@@ -93,7 +93,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     //register function
      func goToRegisterPage(_ sender: Any?) {
         
-        print("Button pressed")
+        let regVC = RegisterViewController()
+        self.present(regVC,animated: true, completion: nil)
         
         
         
@@ -117,7 +118,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         self.present(mainVC, animated: true, completion: nil)
         
     }
-    
+    //gets users info from Facebook
     func getFBInfo(){
         
         
