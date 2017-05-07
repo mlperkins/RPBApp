@@ -8,19 +8,21 @@
 
 import Foundation
 
+/// Profile of a user
 struct UserProfile{
+    let firstName: String
     let email: String
     let password: String
-    var userImage: NSData //most likely will be changed
+    //var userImage: NSData //most likely will be changed
     
-    
-    init(e: String, p: String, image: NSData) {
+    init(n: String, e: String, p: String) {
+        firstName = n
         email = e
         password = p
-        userImage = image
+        
     
     }
-    func getEmail() -> String{
+   /* func getEmail() -> String{
         return email
     }
     func getPassword() -> String {
@@ -33,5 +35,9 @@ struct UserProfile{
         self.userImage = image
         print("User image successfully changed")
         
-    }
+    }*/
+    
 }
+
+
+

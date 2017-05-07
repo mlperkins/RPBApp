@@ -1,22 +1,15 @@
 //
-//  ProfileViewController.swift
+//  PromotionViewController.swift
 //  RPBApp
-//  NOTE: THIS CLASS IS STILL IN PROGRESS
-//  Created by Michael Perkins and Ellen Studer on 4/10/17.
+//  NOTE: CLASS IS INCOMPLETE
+//  Created by Michael Perkins and Ellen Studer on 5/3/17.
 //  Copyright © 2017 Michael Perkins. All rights reserved.
 //
 
-/*import UIKit
+import UIKit
 
-class ProfileView: UIView{
-    
-    var profile : ProfileModel!
+class PromotionViewController: UIViewController {
 
-    init(frame: CGRect, email: String, password: String){
-     profile = ProfileModel(email)
-        
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -39,4 +32,4 @@ class ProfileView: UIView{
     }
     */
 
-}*/
+}

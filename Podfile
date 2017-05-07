@@ -7,6 +7,13 @@ target 'RPBApp' do
 
   # Pods for RPBApp
 
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '10.0'
+use_frameworks!
+
+target ‘Pods-RPBApp’ do
+    pod 'Alamofire', '~> 4.4'
+
 pod ‘FBSDKCoreKit’
 pod ‘FBSDKShareKit’
 pod ‘FBSDKLoginKit’

@@ -9,34 +9,39 @@
 import Foundation
 
 struct Rewards{
-    var breakfastRewards: Int = 0
-    var lunchRewards: Int = 0
-    var smoothiesRewards: Int = 0
-    var coffeeRewards: Int = 0
+    var breakfastRewards: Float = 0
+    var lunchRewards: Float = 0
+    var smoothiesRewards: Float = 0
+    var coffeeRewards: Float = 0
     
-    
+    init(b: Float, l: Float, s: Float, c: Float) {
+        breakfastRewards = b
+        lunchRewards = l
+        smoothiesRewards = s
+        coffeeRewards = c
+    }
     //breakfast points are in 0, lunch in 1, smoothies in 2 and coffee in 3
-    func getAllRewards() -> [Int]{
-        var allRewards: [Int] = []
+    func getAllRewards() -> [Float]{
+        var allRewards: [Float] = []
         allRewards[0] = breakfastRewards
         allRewards[1] = lunchRewards
         allRewards[2] = smoothiesRewards
         allRewards[3] = coffeeRewards
         return allRewards
     }
-    mutating func incrementBreakfast() -> Int {
+    mutating func incrementBreakfast() -> Float {
         breakfastRewards += 1
         return breakfastRewards
     }
-    mutating func incrementLunch() -> Int{
+    mutating func incrementLunch() -> Float{
         lunchRewards += 1
         return lunchRewards
     }
-    mutating func incrementSmoothies() -> Int{
+    mutating func incrementSmoothies() -> Float{
         smoothiesRewards += 1
         return smoothiesRewards
     }
-    mutating func incrementCoffee() -> Int{
+    mutating func incrementCoffee() -> Float{
         coffeeRewards += 1
         return coffeeRewards
     }

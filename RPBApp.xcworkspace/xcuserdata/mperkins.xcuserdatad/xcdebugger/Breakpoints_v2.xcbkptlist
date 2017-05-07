@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RPBApp/TabController.swift"
-            timestampString = "513535135.728084"
+            timestampString = "515878619.033025"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "17"
-            endingLineNumber = "17"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RPBApp/CustomProgressView.swift"
-            timestampString = "513556346.801664"
+            timestampString = "515878619.033025"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
             landmarkName = "setViewConstraints(view:centerY:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -74,12 +74,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RPBApp/CustomProgressView.swift"
-            timestampString = "513556346.801664"
+            timestampString = "515878619.033025"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
-            landmarkName = "init(frame:labelText:progressSize:)"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "init(frame:labelText:progressSize:progressColor:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -89,12 +89,107 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RPBApp/MainPageViewController.swift"
-            timestampString = "513635799.335289"
+            filePath = "RPBApp/RegisterViewController.swift"
+            timestampString = "515879785.324996"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
+            startingLineNumber = "578"
+            endingLineNumber = "578"
+            landmarkName = "setViewConstraints()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RPBApp/LoginViewController.swift"
+            timestampString = "515879785.324996"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "158"
+            endingLineNumber = "158"
+            landmarkName = "loginUserClicked(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RPBApp/RewardsModel.swift"
+            timestampString = "515620495.150852"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "12"
+            endingLineNumber = "12"
+            landmarkName = "Rewards"
+            landmarkType = "14">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RPBApp.Rewards.init (b : Swift.Int, l : Swift.Int, s : Swift.Int, c : Swift.Int) -&gt; RPBApp.Rewards"
+                  moduleName = "RPBApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///home/mperkins/Documents/RPBApp/RPBApp/RewardsModel.swift"
+                  timestampString = "515620495.565317"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "23">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RPBApp.Rewards.breakfastRewards.getter : Swift.Int"
+                  moduleName = "RPBApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///home/mperkins/Documents/RPBApp/RPBApp/RewardsModel.swift"
+                  timestampString = "515620495.567025"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "35">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RPBApp.Rewards.breakfastRewards.setter : Swift.Int"
+                  moduleName = "RPBApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///home/mperkins/Documents/RPBApp/RPBApp/RewardsModel.swift"
+                  timestampString = "515620495.568209"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "15">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RPBApp/MainPageViewController.swift"
+            timestampString = "515878619.033025"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>

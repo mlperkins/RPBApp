@@ -2,13 +2,30 @@
 //  LoginViewController.swift
 //  RPBApp
 //
-//  Created by Michael Perkins on 4/5/17.
+//  Created by Michael Perkins and Ellen Studer on 4/5/17.
 //  Copyright © 2017 Michael Perkins. All rights reserved.
 //
+import Alamofire
 import UIKit
 import FBSDKLoginKit
 import CoreData
+
+/// This class is responsible for presenting the login view to the user.
 class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDelegate {
+    
+    //Login button
+    let loginUser : UIButton = {
+        let button = UIButton(type: UIButtonType.roundedRect)
+        button.backgroundColor = UIColor.init(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.8 )
+        
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Login", for: UIControlState.normal)
+        
+        return button
+        
+        
+    }()
+    
     
     //Image Logo
     let logoView: UIImageView = {
@@ -31,13 +48,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         let view = UITextField()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.borderStyle = .roundedRect
+        view.isSecureTextEntry = true
         return view
         
     }()
     //FB login button
     let FBLoginButton : FBSDKLoginButton = {
         let button = FBSDKLoginButton()
-        
         button.translatesAutoresizingMaskIntoConstraints = false
         button.showsTouchWhenHighlighted = true
         button.tintColor = UIColor.gray
@@ -55,7 +72,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         return button
         
     }()
-    //register now action target
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nil, bundle: nil)
@@ -65,6 +81,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         fatalError("init(coder:) has not been implemented")
     }
     
+    /// Loads the view and sets button target functions.
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -74,15 +91,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         username.delegate = self
         password.delegate = self
         
+        //add the target functions for the buttons on the page
         registerNow.addTarget(self, action: #selector(LoginViewController.goToRegisterPage(_:)), for: UIControlEvents.touchUpInside)
+        loginUser.addTarget(self, action: #selector(LoginViewController.loginUserClicked(_:)), for: UIControlEvents.touchUpInside)
+        
         //background
-        view.backgroundColor = UIColor.init(red: 0/255, green: 191/255, blue: 1.0, alpha: 0.3)
+        view.backgroundColor = UIColor.init(red: 0/255, green: 191/255, blue: 1.0, alpha: 1.0)
         
         view.addSubview(FBLoginButton)
         view.addSubview(username)
         view.addSubview(password)
         view.addSubview(logoView)
         view.addSubview(registerNow)
+        view.addSubview(loginUser)
         self.setTextFieldStyles()
         view.setNeedsUpdateConstraints()
         
@@ -90,8 +111,61 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         
     }
     
-    //register function
-     func goToRegisterPage(_ sender: Any?) {
+    /// Handles all logic for logging in a user when the login button is clicked
+    ///
+    /// - Parameter sender: Default
+    func loginUserClicked(_ sender: Any?){
+        //Alert controller for feedback
+        var alertController: UIAlertController = UIAlertController()
+        
+        //all data from text fields needed for logging in are set
+        let usernameText: String! = username.text
+        let passwordText: String! = password.text
+        
+        let parameters: Parameters = ["email": usernameText, "password" : passwordText]
+        
+        //the URL to the PHP script responsible for login
+        let url = "http://www.ellenstuder.com/ellen/verifyLogin.php"
+        
+        //alamo fire is used to retrieve info in JSON format.
+        Alamofire.request(url, method: .post, parameters: parameters).responseJSON { response in
+            print(response.timeline) //metrics for testing
+            switch(response.result) {
+                //if successful check the contents
+                case .success(_):
+                    //if the JSON can become a dictionary
+                    if let JSON = response.result.value as? [[String:AnyObject]]{
+                        //if the dictionary isnt empty
+                        if JSON.isEmpty == false{
+                            //populate user profile and set the global profile to current
+                            let userProfile = UserProfile.init(n: JSON[0]["f_name"] as! String,e: JSON[0]["email"] as! String, p: "")
+                            GlobalVariables.sharedManager.profile = userProfile
+                            //go to the home page of the app
+                            self.goToHomePage()
+                        }
+                        
+                    }
+                    //JSON could not be converted to dictionary meaning user was not found in database
+                    else{
+                        alertController = UIAlertController(title: "Login Unsuccessful", message: "Invalid Credentials", preferredStyle: UIAlertControllerStyle.alert)
+                        alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default))
+                        self.present(alertController, animated: true, completion: nil)
+                    }
+                    break
+                case .failure(_):
+                    break
+                
+            }
+            
+            
+        }
+        
+    }
+    
+    /// Takes user to the register page
+    ///
+    /// - Parameter sender: Default
+    func goToRegisterPage(_ sender: Any?) {
         
         let regVC = RegisterViewController()
         self.present(regVC,animated: true, completion: nil)
@@ -100,8 +174,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         
     }
     
-    //FACEBOOK LOGIN FUNCS
+    /// Takes user to the main page via tab bar controller
+    func goToHomePage(){
+        //VC segue
+        let mainVC = TabController()
+        
+        self.present(mainVC, animated: true, completion: nil)
+    }
+    //FACEBOOK LOGIN FUNCS - Do not log user into app (YET)
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
+        let man = FBSDKLoginManager()
+        man.logOut()
         print("Did log out of Facebook")
     }
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
@@ -110,47 +193,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
             return
         }
         print("Successful login with Facebook")
-        getFBInfo()
+        let del = UIApplication.shared.delegate as! AppDelegate
+        del.getFBInfo()
+       
         
-        //VC segue
-        let mainVC = TabController()
-        
-        self.present(mainVC, animated: true, completion: nil)
-        
-    }
-    //gets users info from Facebook
-    func getFBInfo(){
-        
-        
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        let profileToStore = Profile(context: context)
-        
-        
-        if (FBSDKAccessToken.current()) != nil{
-            
-            FBSDKGraphRequest (graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email"]).start(completionHandler: { (connection, result, Error) in
-                if(Error == nil) {
-                    print ("result \(String(describing: result))")
-                    let fbData: [String:AnyObject] = result as! [String:AnyObject]
-                    profileToStore.email = fbData["email"] as? String
-                    profileToStore.f_name = fbData["first_name"] as? String
-                    profileToStore.l_name = fbData["last_name"] as? String
-                    //profileToStore.pic = fbData["picture.type(large)"] as? String
-                    (UIApplication.shared.delegate as! AppDelegate).saveContext()
-                    
-                }
-                else{
-                    print("Error \(String(describing: Error))")
-                }
-            
-            })
-        
-        
-        }
     }
     
     
     //Resign keboard
+    /// Resign keyboard when user is using the rest boxes
+    ///
+    /// - Parameter textField: which text field is being used
+    /// - Returns: True - resign keyboard False - dont resign keyboard
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         // Dismisses the Keyboard by making the text field resign
@@ -162,27 +216,53 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         return false
   
     }
+    
+    /// Updates view constraints of elements in the view
     override func updateViewConstraints() {
         setViewConstraints()
         super.updateViewConstraints()
     }
+    
+    /// Adds placeholders to the text boxes
     func setTextFieldStyles() {
         
-        //place holders
-        let usernameHolder = NSAttributedString(string: "Enter email", attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
-        let passwordHolder = NSAttributedString(string: "Enter password", attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
-        
-        username.attributedPlaceholder = usernameHolder
-        password.attributedPlaceholder = passwordHolder
-        
-        username.clearsOnBeginEditing = true
-        password.clearsOnBeginEditing = true
-        
-        
-        
+        username.placeholder = "Enter Email"
+        password.placeholder = "Enter Password"
         
     }
+    
+    /// Sets the view constraints of elements within the view.
     func setViewConstraints() {
+        
+        //login button constraints
+        NSLayoutConstraint(
+            item: loginUser,
+            attribute: .centerX,
+            relatedBy: .equal,
+            toItem: view,
+            attribute: .centerX,
+            multiplier: 1.0,
+            constant: 0.0)
+            .isActive = true
+        NSLayoutConstraint(
+            item: loginUser,
+            attribute: .top,
+            relatedBy: .equal,
+            toItem: registerNow,
+            attribute: .bottom,
+            multiplier: 1.0,
+            constant: 30.0)
+            .isActive = true
+        
+        NSLayoutConstraint(
+            item: loginUser,
+            attribute: .width,
+            relatedBy: .equal,
+            toItem: view,
+            attribute: .width,
+            multiplier: 0.35,
+            constant: 0.0)
+            .isActive = true
         
         //Register button constraints
         NSLayoutConstraint(
@@ -215,7 +295,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
             multiplier: 1.0,
             constant: 0.0)
             .isActive = true
-        
+        //Facebok button width
         NSLayoutConstraint(
             item: FBLoginButton,
             attribute: .width,
@@ -230,10 +310,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
             item: FBLoginButton,
             attribute: .top,
             relatedBy: .equal,
-            toItem: view,
+            toItem: loginUser,
             attribute: .bottom,
-            multiplier: 0.8,
-            constant: 0.0)
+            multiplier: 1.0,
+            constant: 20.0)
             .isActive = true
 
         //Layout constraints for username box
@@ -329,6 +409,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
             multiplier: 0.6,
             constant: 0.0)
             .isActive = true
+        
         
         
         //distance from username constraint
