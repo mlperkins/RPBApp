@@ -18,7 +18,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     //register button
     let registerNow : UIButton = {
         let button = UIButton(type: UIButtonType.roundedRect)
-        button.backgroundColor = UIColor.init(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
+        button.backgroundColor = UIColor.init(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.8)
         
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Register Now", for: UIControlState.normal)
@@ -32,7 +32,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     //back to login button
     let backToLogin : UIButton = {
         let button = UIButton(type: UIButtonType.roundedRect)
-        button.backgroundColor = UIColor.init(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
+        button.backgroundColor = UIColor.init(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.8)
         
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Back to Login", for: UIControlState.normal)
